@@ -37,6 +37,9 @@ class UserAuth(BaseModel):
     role:str='student'
 
 
+@app.get("/")
+async def health_check():
+    return {"status": "Backend is running!"}
 
 @app.post("/register")
 async def register(user: UserAuth):
