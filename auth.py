@@ -25,7 +25,11 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 MONGO_URI = os.getenv("MONGO_URI")
-mongo_client = MongoClient(MONGO_URI,tlsCAFile=certifi.where())
+mongo_client = MongoClient(
+    MONGO_URI, 
+    tlsCAFile=certifi.where(),
+    tlsAllowInvalidCertificates=True  
+)
 
 db=mongo_client['cag_db']
 users_collection = db['users']
